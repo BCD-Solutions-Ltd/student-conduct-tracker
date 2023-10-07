@@ -1,5 +1,5 @@
 from flask import Blueprint, redirect, render_template, request, send_from_directory, jsonify, flash
-from App.models import db
+from App.models import db, User
 from App.controllers import *
 
 index_views = Blueprint('index_views', __name__, template_folder='../templates')
@@ -8,9 +8,6 @@ index_views = Blueprint('index_views', __name__, template_folder='../templates')
 def index_page():
     return render_template('index.html')
 
-@index_views.route('/login', methods=['POST'])
-def login_action():
-  return render_template('login.html')
 
 @index_views.route('/init', methods=['GET'])
 def init():
