@@ -5,6 +5,20 @@
 {{ super() }}
 
 {% block content %}
-    <h1>Student Conduct Tracker</h1>
-    <p>This is a boilerplate flask application which follows the MVC pattern for structuring the project.</p>
+<div class="fb-det">
+    <form method="post">
+        <div class="fb-row">
+            <input name="name" type="text" placeholder="Enter Full Name" class="form-control">
+        </div>
+        <div class="fb-row">
+            <input name="email" type="email" placeholder="Enter Email Address" class="form-control">
+        </div>
+        <div class="fb-row">
+            <input name="mobile" type="text" placeholder="Enter Mobile Number" class="form-control">
+        </div>
+        <div class="fb-row">
+            <button type="submit" class="btn btn-info">Book Consultation</button>
+        </div>
+    </form>
+</div>
 {% endblock %}
