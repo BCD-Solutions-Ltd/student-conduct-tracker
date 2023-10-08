@@ -1,2 +1,3 @@
 from .user import *
-from .models import*
+from .student import *
+from .review import *
