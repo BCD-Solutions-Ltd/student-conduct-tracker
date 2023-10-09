@@ -1,9 +1,9 @@
 # controllers.py
 from flask import jsonify
-from models import db, Student, Review
+from App.models import db, Student, Review
 
 def add_student(name):
-    student = Student(name=name)
+    student = Student(name)
     db.session.add(student)
     db.session.commit()
     return jsonify({"message": "Student successfully added"})
@@ -22,7 +22,7 @@ def log_review(student_id, review_t):
     if not student:
         return jsonify({"error": "This student was not found"}), 404
 
-    review = Review(student_id=student_id, review_text=review_text)
+    review = Review(student_id=student_id, review_text=review_t)
     db.session.add(review)
     db.session.commit()
     return jsonify({"message": "Review was sent successfully"})

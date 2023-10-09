@@ -11,6 +11,9 @@ class User(db.Model, UserMixin):
         self.username = username
         self.set_password(password)
 
+    def __repr__(self):
+        return f'<{self.id}: {self.username}, {self.password}>'
+
     def get_json(self):
         return{
             'id': self.id,
