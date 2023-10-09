@@ -17,7 +17,7 @@ class Review(db.Model):
         return{
             'review ID' : self.revid,
             'student Id' : self.studentid,
-            ' Review Text ': self.review_t
-            'upvotes': self.upvotes
-            'downvotes': self.downvotes,  
+            ' Review Text ': self.review_t,
+            'upvotes': self.upvotes,
+            'downvotes': self.downvotes
         }
