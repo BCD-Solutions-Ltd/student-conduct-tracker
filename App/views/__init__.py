@@ -8,5 +8,5 @@ from .review import review_views
 
 
 
-views = [user_views, index_views, auth_views, review_views, student_views] 
+views = [user_views, index_views, auth_views, student_views, review_views] 
 # blueprints must be added to this list
