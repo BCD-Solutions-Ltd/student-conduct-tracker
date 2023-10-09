@@ -9,6 +9,7 @@ def toJson():
     return{
         "student ID" : self.studentid,
         "student Name" : self.name
+        'karma': self.karma, 
     }
     
     
