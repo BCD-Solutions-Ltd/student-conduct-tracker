@@ -1,6 +1,5 @@
-from flask import Blueprint, render_template, jsonify, request, send_from_directory, flash, redirect, url_for
-from flask_jwt_extended import jwt_required, current_user as jwt_current_user
-from flask_login import current_user, login_required
+from flask import Blueprint, render_template, jsonify, request, send_from_directory
+from flask_jwt import jwt_required, current_identity
 
 from.index import index_views
 
@@ -16,7 +15,7 @@ def getall_student_action():
 @student_views.route('/api/student', methods=['POST'])
 def create_student_action():
     data = request.json
-    create_user(data['studentid'], data['name'])
+    add_student(data['studentid'], data['name'])
     return jsonify({'message': f"student {data['studentid']} created"})
 
 @student_views.route('/api/student', methods=['PUT'])
@@ -28,3 +27,5 @@ def update_student_action():
 @student_views.route('/api/student', methods=['GET'])
 def geta_student_action():
     data = request.json
+    student = get_student_toJSON(data['studentid'])
+    return jsonify({'message': f"Student found:Student Id {data['studentid']} with name: {student['name']}"} )
