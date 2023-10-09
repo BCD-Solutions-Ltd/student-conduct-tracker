@@ -22,9 +22,9 @@ class Review(db.Model):
     def downvote(self):
         self.votes -= 1
 
-    def toJson():
-        return{
-            "review ID" : self.revid,
-            "student Id" : self.studentid,
-            " Review ": self.review_t
-        }
+def toJson():
+    return{
+        "review ID" : self.revid,
+        "student Id" : self.studentid,
+        " Review ": self.review_t
+    }

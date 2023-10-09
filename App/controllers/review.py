@@ -36,6 +36,4 @@ def calculate_karma(student_id):
     return None
 
 
-def search_student(student_id):
-    student = Student.query.get(student_id)
-    return student
+

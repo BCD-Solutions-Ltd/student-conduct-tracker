@@ -16,10 +16,10 @@ class Student(db.Model):
         return f'<Student {self.id} {self.name} - {self.karma} Karma'
 
 
-    def toJson():
-        return{
-            "student ID" : self.studentid,
-            "student Name" : self.name
-        }
+def toJson():
+    return{
+        "student ID" : self.studentid,
+        "student Name" : self.name
+    }
     
     
