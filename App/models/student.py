@@ -6,10 +6,10 @@ class Student(db.Model):
     karma = db.Column(db.Integer, default=0)
     reviews = db.relationship('Review', backref='student')
 
-    def __init__(self, studentId, name):
-        self.studentId = studentId
-        self.name = name
-        self.karma = 0.0
+    #def __init__(self, studentId, name):
+        #self.studentId = studentId
+        #self.name = name
+        #self.karma = 0.0
 
     def toJson():
         return{
