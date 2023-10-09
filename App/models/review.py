@@ -7,11 +7,11 @@ class Review(db.Model):
     upvotes = db.Column(db.Integer, default=0)
     downvotes = db.Column(db.Integer, default=0)
 
-    def __init__(self,studentId, message, upvote, downvote):
-        self.studentId = studentId
-        self.message = message
-        self.upvote = upvote
-        self.downvote = downvote
+    #def __init__(self,studentId, message, upvote, downvote):
+        #self.studentId = studentId
+        #self.message = message
+        #self.upvote = upvote
+        #self.downvote = downvote
 
     def toJson():
         return{
