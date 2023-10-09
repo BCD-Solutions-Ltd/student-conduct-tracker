@@ -11,7 +11,10 @@ def index_page():
 
 @index_views.route('/init', methods=['GET'])
 def init():
-    return jsonify(message='db initialized!')
+    db.drop_all()
+    db.create_all()
+    create_user('dob', 'dobpass')
+    return jsonify({'message':'db initialized!'})
 
 @index_views.route('/health', methods=['GET'])
 def health_check():
