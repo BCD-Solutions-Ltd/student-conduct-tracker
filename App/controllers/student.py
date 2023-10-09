@@ -29,4 +29,14 @@ def update_student(studentid, name):
         return db.session.commit()
     return None
 
+def calculate_karma(studentid):
+    student = Student.query.get(studentid)
+    if student:
+        karma = sum([review.upvotes - review.downvotes for review in student.reviews])
+        student.karma = karma
+        db.session.commit()
+        return student
+    return None
+
+
 
