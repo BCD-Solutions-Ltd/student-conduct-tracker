@@ -5,7 +5,10 @@ from .index import index_views
 from .auth import auth_views
 from .student import *
 from .review import *
+<<<<<<< HEAD
 
+=======
+>>>>>>> 0b7ecaf8eeed9c616440bdb380709ddf970a3f41
 
 
 views = [user_views, index_views, auth_views] 
