@@ -26,14 +26,6 @@ def downvote_review(revid):
         db.session.commit()
         return review
 
-def calculate_karma(studentid):
-    student = Student.query.get(studentid)
-    if student:
-        karma = sum([review.upvotes - review.downvotes for review in student.reviews])
-        student.karma = karma
-        db.session.commit()
-        return student
-    return None
 
 
 
