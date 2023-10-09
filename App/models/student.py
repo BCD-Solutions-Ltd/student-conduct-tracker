@@ -14,8 +14,8 @@ class Student(db.Model):
     def toJson():
         return{
             'student ID' : self.studentid,
-            'student Name' : self.name
-            'karma': self.karma, 
+            'student Name' : self.name,
+            'karma': self.karma
          }
     
 
