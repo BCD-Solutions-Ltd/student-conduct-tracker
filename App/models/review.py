@@ -18,6 +18,6 @@ class Review(db.Model):
             'review ID' : self.revid,
             'student Id' : self.studentid,
             ' Review Text ': self.review_t
-            'upvotes': self.upvotes,
+            'upvotes': self.upvotes
             'downvotes': self.downvotes,  
         }
