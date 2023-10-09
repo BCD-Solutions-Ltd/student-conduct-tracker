@@ -11,5 +11,7 @@ def toJson():
     return{
         "review ID" : self.revid,
         "student Id" : self.studentid,
-        " Review ": self.review_t
+        " Review Text ": self.review_t
+        'upvotes': self.upvotes,
+        'downvotes': self.downvotes,  
     }
