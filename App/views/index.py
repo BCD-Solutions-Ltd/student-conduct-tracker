@@ -11,9 +11,6 @@ def index_page():
 
 @index_views.route('/init', methods=['GET'])
 def init():
-    db.drop_all()
-    db.create_all()
-    create_user('dob', 'dobpass')
     return jsonify(message='db initialized!')
 
 @index_views.route('/health', methods=['GET'])
