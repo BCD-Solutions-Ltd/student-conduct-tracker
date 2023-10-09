@@ -1,4 +1,5 @@
 from App.models import Student
+from App.models import Review
 from App.database import db
 
 def add_student(studentid, name):
