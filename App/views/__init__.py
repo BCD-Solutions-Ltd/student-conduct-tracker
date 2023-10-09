@@ -3,6 +3,8 @@
 from .user import user_views
 from .index import index_views
 from .auth import auth_views
+from .student import *
+from .review import *
 
 
 views = [user_views, index_views, auth_views] 
