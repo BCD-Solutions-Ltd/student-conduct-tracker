@@ -12,16 +12,16 @@ def get_all_students():
     return Student.query.all()
 
 def get_student(studentid):
-    student = Student.query.filter_by(studentid=studentid).first()
+    student = Student.query.get(studentid)
     return student
     
 def get_student_toJSON(studentid):
-    student = StudentModel.query.filter_by(studentid=studentid).first()
+    student = Student.query.get(studentid)
     return student.toJSON()
 
 
-def update_student(student_id, name):
-    student = Student.query.get(student_id)
+def update_student(studentid, name):
+    student = Student.query.get(studentid)
     if student:
         student.name = name
         print(student.name)
