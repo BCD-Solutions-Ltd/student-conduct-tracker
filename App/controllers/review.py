@@ -2,18 +2,17 @@ from App.models import Student
 from App.models import Review
 from App.database import db
 
-def create_review(stu_id, content):
+def create_review(rev_id, stu_id, content):
     student = Student.query.get(stu_id)
     if student:
-        review = Review(stu_id, content)
+        review = Review(rev_id, stu_id, content)
         db.session.add(review)
         db.session.commit()
         return review
     return None
 
 def list_reviews():
-    reviews = Review.query.all()
-    return reviews
+    return Review.query.all()
 
 def upvote_review(revid):
     review = Review.query.get(revid)

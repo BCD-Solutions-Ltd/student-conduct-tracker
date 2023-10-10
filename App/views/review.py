@@ -21,8 +21,10 @@ def create_review_action():
     return jsonify({"message": "Review added"}), 201
 
 
-@review_views.route('reviews/list', methods=['GET'])
+@review_views.route('/reviews/list', methods=['GET'])
 def list_reviews_action():
     reviews = list_reviews()
+    if not reviews:
+        return jsonify({"error":"Table empty"}), 400
     return jsonify(reviews)
 

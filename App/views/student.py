@@ -6,10 +6,16 @@ from App.controllers import *
 
 student_views = Blueprint('student_views', __name__, template_folder='../templates')
 
+# @student_views.route('/students', methods=["POST"])
+# def create_student_action():
+#     data = request.get_json()
+
+
+
 @student_views.route('/api/student', methods=['GET'])
 def getall_student_action():
-    users = get_all_students()
-    return jsonify(student)
+    students = get_all_students()
+    return jsonify(students)
 
 @student_views.route('/api/student', methods=['POST'])
 def create_student_action():
