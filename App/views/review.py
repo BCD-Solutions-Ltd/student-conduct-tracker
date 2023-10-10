@@ -5,22 +5,24 @@ from App.controllers import *
 
 review_views = Blueprint('review_views', __name__, template_folder='../templates')
 
-@review_views.route('/api/review', methods=['POST'])
+
+@review_views.route('/reviews', methods=['POST'])
 def create_review_action():
-    data = request.json
-    log_review( data['studentid'], data['review_t']):
-    return jsonify({'message': f"review for: {data['studentid']} created"})
+    data = request.get_json()
+    stu_id = data.get('studentID')
+    content = data.get('content')
+    votes = data.get('votes')
+
+    if not(stu_id and content and votes):
+        return jsonify({"error":"Bad Request"}), 400
+    
+    create_review(stu_id, content)
+
+    return jsonify({"message": "Review added"}), 201
 
 
-@review_views.route('/api/review/upvote', methods=['POST'])
-def update_upvotes_action():
-    data = request.json
-    upvote_review(data['revid'])):
-    return jsonify({'message': f"review with id: {data['revid']} upvoted "})
+@review_views.route('reviews/list', methods=['GET'])
+def list_reviews_action():
+    reviews = list_reviews()
+    return jsonify(reviews)
 
-
-@review_views.route('/api/review/downvote', methods=['POST'])
-def update_downvotes_action():
-    data = request.json
-    downvote_review(data['revid'])):
-    return jsonify({'message': f"review with id: {data['revid']} downvoted "})

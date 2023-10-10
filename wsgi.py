@@ -1,4 +1,4 @@
-import click, pytest, sys
+import click, pytest, sys, jwt
 from flask import Flask
 from flask.cli import with_appcontext, AppGroup
 
