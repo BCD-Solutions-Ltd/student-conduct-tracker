@@ -1,43 +1,51 @@
 from App.models import Student
 from App.models import Review
 from App.database import db
+from json import dumps
+from flask import jsonify
 
-def add_student(studentid, name):
-    newstudent = Student(studentid=studentid, name=name)
-    db.session.add(newstudent)
+
+def create_student(stu_id, name):
+    student = Student.query.get(stu_id)
+    if not student:
+        return None
+    new_student = Student(stu_id, name)
+    db.session.add(new_student)
     db.session.commit()
-    return student
+    return new_student
 
-
-def get_all_students():
-    return Student.query.all()
-
-def get_student(studentid):
-    student = Student.query.get(studentid)
-    return student
-    
-def get_student_toJSON(studentid):
-    student = Student.query.get(studentid)
-    return student.toJSON()
-
-
-def update_student(studentid, name):
-    student = Student.query.get(studentid)
+def update_student(stu_id, name):
+    student = Student.query.get(stu_id)
     if student:
         student.name = name
-        print(student.name)
-        db.session.commit(student)
-        return db.session.commit()
+        db.session.add(student)
+        db.session.commit()
+        return
+
     return None
 
-def calculate_karma(studentid):
-    student = Student.query.get(studentid)
+def search_student(stu_name):
+    student = Student.query.filter_by(name=stu_name).first()
+    if student:
+        return student.to_json()
+    return None
+
+def get_all_students():
+    students = Student.query.all()
+    student_list = [{'stu_id': student.stu_id, 'name': student.name, 'karma': student.karma} for student in students]
+
+    return dumps(student_list)
+
+
+def get_student(stu_id):
+    student = Student.query.get(stu_id)
+    return student
+
+def calculate_karma(stu_id):
+    student = Student.query.get(stu_id)
     if student:
         karma = sum([review.upvotes - review.downvotes for review in student.reviews])
         student.karma = karma
         db.session.commit()
         return student
     return None
-
-
-
