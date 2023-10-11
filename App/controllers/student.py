@@ -1,6 +1,8 @@
 from App.models import Student
 from App.models import Review
 from App.database import db
+from json import dumps
+from flask import jsonify
 
 
 def create_student(stu_id, name):
@@ -26,7 +28,11 @@ def search_student(stu_name):
     return None
 
 def get_all_students():
-    return Student.query.all()
+    students = Student.query.all()
+    student_list = [{'stu_id': student.stu_id, 'name': student.name, 'karma': student.karma} for student in students]
+
+    return dumps(student_list)
+
 
 def get_student(stu_id):
     student = Student.query.get(stu_id)

@@ -5,6 +5,7 @@ from flask.cli import with_appcontext, AppGroup
 from App.database import db, get_migrate
 from App.main import create_app
 from App.controllers import *
+from flask import jsonify
 
 # This commands file allow you to create convenient CLI commands for testing controllers
 
