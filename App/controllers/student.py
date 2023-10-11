@@ -6,10 +6,13 @@ from flask import jsonify
 
 
 def create_student(stu_id, name):
-    student = Student(stu_id, name)
-    db.session.add(student)
+    student = Student.query.get(stu_id)
+    if not student:
+        return None
+    new_student = Student(stu_id, name)
+    db.session.add(new_student)
     db.session.commit()
-    return student
+    return new_student
 
 def update_student(stu_id, name):
     student = Student.query.get(stu_id)
