@@ -28,3 +28,25 @@ def list_reviews_action():
         return jsonify({"error":"Table empty"}), 400
     return jsonify(reviews)
 
+
+@review_views.route('/reviews/<stu_id>/<rev_id>/upvote', methods=['POST'])
+def upvote_review(rev_id):
+    review = find_review_by_id(rev_id)
+
+    if review is None:
+        return jsonify({"error": "Review not found"}), 404
+
+    review['votes'] += 1
+
+    return jsonify({"message": "Review upvoted"}), 200
+
+@review_viewws.route('/reviews/<stu_id>/<rev_id>/downvote', methods=['POST'])
+def downvote_review(rev_id):
+    review = find_review_by_id(rev_id)
+
+    if review is None:
+        return jsonify({"error": "Review not found"}), 404
+
+    review['votes'] -= 1
+
+    return jsonify({"message": "Review downvoted"}), 200

@@ -41,11 +41,11 @@ def get_student(stu_id):
     student = Student.query.get(stu_id)
     return student
 
-# def calculate_karma(stu_id):
-#     student = Student.query.get(stu_id)
-#     if student:
-#         karma = sum([review.upvotes - review.downvotes for review in student.reviews])
-#         student.karma = karma
-#         db.session.commit()
-#         return student
-#     return None
+def calculate_karma(stu_id):
+    student = Student.query.get(stu_id)
+    if student:
+        karma = sum([review.upvotes - review.downvotes for review in student.reviews])
+        student.karma = karma
+        db.session.commit()
+        return student
+    return None

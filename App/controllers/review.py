@@ -1,6 +1,7 @@
 from App.models import Student
 from App.models import Review
 from App.database import db
+from json import dumps
 
 def create_review(rev_id, stu_id, content):
     student = Student.query.get(stu_id)
@@ -28,6 +29,7 @@ def downvote_review(revid):
         db.session.commit()
         return review
 
-
-
+def find_review_by_id(revid):
+    review = Review.query.get(revid)
+    return dumps(review)
 
