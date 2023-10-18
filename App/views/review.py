@@ -40,7 +40,7 @@ def upvote_review(rev_id):
 
     return jsonify({"message": "Review upvoted"}), 200
 
-@review_viewws.route('/reviews/<stu_id>/<rev_id>/downvote', methods=['POST'])
+@review_views.route('/reviews/<stu_id>/<rev_id>/downvote', methods=['POST'])
 def downvote_review(rev_id):
     review = find_review_by_id(rev_id)
 

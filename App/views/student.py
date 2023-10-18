@@ -12,6 +12,8 @@ def create_student_action():
     stu_id = data.get('stu_id')
     name = data.get('name')
     
+    create_student(stu_id, name)
+
     return jsonify({"message":"Student created"}), 201
 
 @student_views.route('/student/list', methods=['GET'])
