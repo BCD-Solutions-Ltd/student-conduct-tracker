@@ -8,15 +8,16 @@ review_views = Blueprint('review_views', __name__, template_folder='../templates
 
 @review_views.route('/reviews', methods=['POST'])
 def create_review_action():
-    data = request.get_json()
-    stu_id = data.get('studentID')
-    content = data.get('content')
-    votes = data.get('votes')
+    data = request.json
 
-    if not(stu_id and content and votes):
+    rev_id = data.get('rev_id')
+    stu_id = data.get('stu_id')
+    content = data.get('content')
+
+    if not(rev_id and stu_id and content):
         return jsonify({"error":"Bad Request"}), 400
     
-    create_review(stu_id, content)
+    create_review(rev_id, stu_id, content)
 
     return jsonify({"message": "Review added"}), 201
 
@@ -30,23 +31,22 @@ def list_reviews_action():
 
 
 @review_views.route('/reviews/<stu_id>/<rev_id>/upvote', methods=['POST'])
-def upvote_review(rev_id):
+def upvote_review_action(stu_id, rev_id):
     review = find_review_by_id(rev_id)
 
     if review is None:
         return jsonify({"error": "Review not found"}), 404
 
-    review['votes'] += 1
-
+    upvote_review(stu_id, rev_id)
     return jsonify({"message": "Review upvoted"}), 200
 
 @review_views.route('/reviews/<stu_id>/<rev_id>/downvote', methods=['POST'])
-def downvote_review(rev_id):
+def downvote_review_action(stu_id, rev_id):
     review = find_review_by_id(rev_id)
 
     if review is None:
         return jsonify({"error": "Review not found"}), 404
 
-    review['votes'] -= 1
+    downvote_review(stu_id, rev_id)
 
     return jsonify({"message": "Review downvoted"}), 200

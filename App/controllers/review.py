@@ -13,23 +13,39 @@ def create_review(rev_id, stu_id, content):
     return None
 
 def list_reviews():
-    return Review.query.all()
+    reviews = Review.query.all()
+    if not reviews:
+        return []
+    
+    review_list = [review.to_json() for review in reviews]
 
-def upvote_review(revid):
-    review = Review.query.get(revid)
-    if review:
-        review.upvotes += 1
-        db.session.commit()
-        return review
+    return review_list
 
-def downvote_review(revid):
-    review = Review.query.get(revid)
-    if review:
-        review.downvotes += 1
-        db.session.commit()
-        return review
+def upvote_review(stu_id, rev_id):
+    student = Student.query.get(stu_id)
+    if student:
+        review = Review.query.filter_by(rev_id=rev_id).first()
+        if review:
+            review.votes += 1
+            db.session.commit()
+            return review
+        return None
+        
+    return None
 
-def find_review_by_id(revid):
-    review = Review.query.get(revid)
-    return dumps(review)
+def downvote_review(stu_id, rev_id):
+    student = Student.query.get(stu_id)
+    if student:
+        review = Review.query.filter_by(rev_id=rev_id).first()
+        if review:
+            review.votes -= 1
+            db.session.commit()
+            return review
+        return None
+        
+    return None
+
+def find_review_by_id(rev_id):
+    review = Review.query.get(rev_id)
+    return review
 

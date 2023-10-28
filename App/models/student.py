@@ -23,4 +23,4 @@ class Student(db.Model):
             'karma': self.karma,
             'reviews': [review.to_json() for review in self.reviews]
         }
-        return dumps(student_json)
+        return student_json

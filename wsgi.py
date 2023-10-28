@@ -49,17 +49,6 @@ def list_user_command(format):
         print(get_all_users_json())
 
 
-@user_cli.command("add-review", help="creates a new student review")
-@click.argument("review_id")
-@click.argument("student_id")
-@click.argument("content")
-def create_review_command(review_id, student_id, content):
-    create_review(review_id, student_id, content)
-    print(f'Review added for {student_id}!')
-
-@user_cli.command("list-reviews", help="lists all reviews")
-def list_reviews_command():
-    print(list_reviews())
 
 
 app.cli.add_command(user_cli) # add the group to the cli
@@ -91,8 +80,42 @@ def update_student_command(stu_id, name):
 def search_student_command(name):
     print(search_student(name))
 
+@student.command("karma", help="calculates student karma")
+@click.argument("student_id")
+def calculate_karma_command(student_id):
+    print(calculate_karma(student_id))
 
 app.cli.add_command(student)
+
+review = AppGroup('review', help='Review commands')
+
+@review.command("create", help="creates a new student review")
+@click.argument("review_id")
+@click.argument("student_id")
+@click.argument("content")
+def create_review_command(review_id, student_id, content):
+    create_review(review_id, student_id, content)
+    print(f'Review added for {student_id}!')
+
+@review.command("list", help="lists all reviews")
+def list_reviews_command():
+    print(list_reviews())
+
+@review.command("upvote", help="upvotes a review")
+@click.argument("student_id")
+@click.argument("review_id")
+def upvote_review_command(student_id, review_id):
+    upvote_review(student_id, review_id)
+    print(f'Upvoted review!')
+
+@review.command("downvote", help="downvotes a review")
+@click.argument("student_id")
+@click.argument("review_id")
+def downvote_review_command(student_id, review_id):
+    downvote_review(student_id, review_id)
+    print(f'Downvoted review!')
+
+app.cli.add_command(review)
 
 '''
 Test Commands

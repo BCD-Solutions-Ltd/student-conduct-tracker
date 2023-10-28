@@ -24,4 +24,4 @@ class Review(db.Model):
             'Review Text': self.content,
             'Votes': self.votes
         }
-        return dumps(review_json)
+        return review_json
